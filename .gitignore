@@ -1,0 +1,4 @@
+config.*.json
+!*.template.*
+*.legacy.*
+__pycache__

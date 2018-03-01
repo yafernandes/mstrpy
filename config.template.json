@@ -1,0 +1,11 @@
+{
+    "REST_server": {
+        "host": "<SERVER>",
+        "port": 443,
+        "web_application": "MicroStrategyLibrary",
+        "credential": {
+            "username": "mstr",
+            "password": "*********"
+        }
+    }
+}
