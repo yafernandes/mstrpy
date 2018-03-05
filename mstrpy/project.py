@@ -5,6 +5,7 @@ from .const import SEARCH_TYPE_EXACTLY, OBJECT_TYPE_REPORT_DEFINITION
 class Project:
     def __init__(self, conn, json):
         self.__conn = conn
+        self.__json = json
         self.__headers = {'X-MSTR-ProjectID': json['id']}
 
     def _request(self, method, path, headers={}, json=None, params={}):
