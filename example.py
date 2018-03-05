@@ -20,11 +20,11 @@ def pandas_sample():
     df = pd.read_csv(link)
 
     td = Table_Definition()
-    td.name('SampleTable')
+    td.name = 'SampleTable'
     td.import_pandas(df)
 
     dd = Dataset_Definition()
-    dd.name('SampleDataset')
+    dd.name = 'SampleDataset'
     dd.add_table(td)
 
     with open('mstrpy/config.2CPU.json', encoding='utf-8', mode='r') as f:
