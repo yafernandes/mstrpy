@@ -28,7 +28,7 @@ class Project:
                                 '/datasets',
                                 headers=self.__headers,
                                 json=dataset_definition.json())
-        return Dataset(self, r.json())
+        return r.json()['datasetId']
 
     def get_datasets(self, **kwargs):
         if 'id' in kwargs:

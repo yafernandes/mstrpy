@@ -10,7 +10,7 @@ class Dataset():
 
     def load_table(self, table_definition, update_policy=UPDATE_POLICE_UPSERT):
         self.__project._request('PATCH',
-                                     f'/datasets/{self.__json["datasetId"]}/tables/{table_definition.name}',
+                                     f'/datasets/{self.id}/tables/{table_definition.name}',
                                      headers={'updatePolicy':  update_policy},
                                      json=table_definition.json()
                                      )

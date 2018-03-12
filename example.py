@@ -38,7 +38,7 @@ def pandas_sample():
         print(project.get_datasets(id=ds.id))
 
     print('Creating dataset', flush=True)
-    dataset = project.create_dataset(dd)
+    dataset = project.get_datasets(id=project.create_dataset(dd))
     print('Updating datasets', flush=True)
     dataset.load_table(td)
 
