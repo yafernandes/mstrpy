@@ -33,7 +33,7 @@ def pandas_sample():
     conn = Connection(config).connect()
     project = conn.get_project('MicroStrategy Tutorial')
 
-    for ds in project.get_datasets(name='Rockwell', search_type=SEARCH_TYPE_BEGIN_WITH):
+    for ds in project.get_datasets(name='Sample', search_type=SEARCH_TYPE_BEGIN_WITH):
         print(ds.id)
         print(project.get_datasets(id=ds.id))
 
