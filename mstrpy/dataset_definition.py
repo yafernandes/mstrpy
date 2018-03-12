@@ -1,6 +1,5 @@
 import json
 
-
 class Dataset_Definition:
     def __init__(self):
         self.__tables = []

@@ -1,7 +1,6 @@
 from .dataset import Dataset
 from .const import SEARCH_TYPE_EXACTLY, OBJECT_TYPE_REPORT_DEFINITION
 
-
 class Project:
     def __init__(self, conn, json):
         self.__conn = conn
@@ -31,13 +30,17 @@ class Project:
                                 json=dataset_definition.json())
         return Dataset(self, r.json())
 
-    def get_datasets(self, name, search_type = SEARCH_TYPE_EXACTLY):
-        searchParams = {
-            'limit': -1,
-            'pattern': search_type,
-            'type': OBJECT_TYPE_REPORT_DEFINITION,
-            'name': name
-        }
+    def get_datasets(self, **kwargs):
+        if 'id' in kwargs:
+            r = self._request('GET',f'/datasets/{kwargs["id"]}')
+            return Dataset(self, r.json())
+        else:
+            searchParams = {
+                'limit': -1,
+                'pattern': kwargs.get('search_type', SEARCH_TYPE_EXACTLY),
+                'type': OBJECT_TYPE_REPORT_DEFINITION,
+                'name': kwargs['name']
+            }
         r = self._request('GET','/searches/results',params=searchParams)
         return [Dataset(self, dataset) for dataset in r.json()['result']]
 

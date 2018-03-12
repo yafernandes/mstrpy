@@ -9,7 +9,7 @@ import ssl
 import pandas as pd
 import requests
 
-from mstrpy import Connection, Dataset_Definition, Table_Definition
+from mstrpy import Connection, Dataset_Definition, Table_Definition, SEARCH_TYPE_BEGIN_WITH
 
 
 def pandas_sample():
@@ -32,11 +32,15 @@ def pandas_sample():
 
     conn = Connection(config).connect()
     project = conn.get_project('MicroStrategy Tutorial')
+
+    for ds in project.get_datasets(name='Rockwell', search_type=SEARCH_TYPE_BEGIN_WITH):
+        print(ds.id)
+        print(project.get_datasets(id=ds.id))
+
     print('Creating dataset', flush=True)
     dataset = project.create_dataset(dd)
     print('Updating datasets', flush=True)
     dataset.load_table(td)
-
 
 if __name__ == '__main__':
     pandas_sample()

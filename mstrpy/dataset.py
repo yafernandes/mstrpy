@@ -1,10 +1,12 @@
-class Dataset:
+from mstrpy import UPDATE_POLICE_UPSERT
 
-    UPDATE_POLICE_UPSERT = 'Upsert'
+class Dataset():
 
     def __init__(self, project, json):
         self.__project = project
         self.__json = json
+        self.name = json['name']
+        self.id = json['id']
 
     def load_table(self, table_definition, update_policy=UPDATE_POLICE_UPSERT):
         self.__project._request('PATCH',
@@ -14,4 +16,4 @@ class Dataset:
                                      )
 
     def __str__(self):
-        return self.__json['name']
+        return self.name
