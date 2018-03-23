@@ -8,14 +8,14 @@ from .project import Project
 
 class Connection:
 
-    __log = logging.getLogger('MicroStrategy REST API')
-    __log.setLevel(logging.INFO)
+    logger = logging.getLogger('mstrpy')
 
     def __init__(self, config):
         self.__config = config
-        self.__baseURL = 'https://{}:{}/{}/api'.format(self.__config['REST_server']['host'],
-                                                      self.__config['REST_server']['port'],
-                                                      self.__config['REST_server']['web_application'])
+        self.__baseURL = '{}://{}:{}/{}/api'.format(self.__config['REST_server'].get('protocol', 'https'),
+                                                    self.__config['REST_server']['host'],
+                                                    self.__config['REST_server'].get('port', 443),
+                                                    self.__config['REST_server'].get('web_application','MicroStrategyLibrary'))
         self._session = requests.Session()
 
     def connect(self):
@@ -39,10 +39,8 @@ class Connection:
         if r.ok:
             return r
         else:
-            Connection.__log.error(
-                f'HTTP call failed with error code {r.status_code}')
-            Connection.__log.error(f'Error message is {r.content}')
-            Connection.__log.debug(r)
+            Connection.logger.error(f'HTTP call failed with error code {r.status_code}')
+            Connection.logger.error(f'Error message is {r.content}')
             raise Exception(r.content)
 
     def projects(self):
