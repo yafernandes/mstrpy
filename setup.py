@@ -7,6 +7,7 @@ setup(name='mstrpy',
       author_email=['afernandes@microstrategy.com'],
       packages=['mstrpy'],
       install_requires=[
-          'requests'
+          'requests',
+          'pandas'
       ]
      )
