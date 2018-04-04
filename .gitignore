@@ -1,4 +1,10 @@
 config.*.json
 !*.template.*
 *.legacy.*
-__pycache__
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.egg-info/
+

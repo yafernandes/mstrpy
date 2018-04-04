@@ -28,7 +28,7 @@ class Table_Definition:
 
         return {
             'name': self.name if self.name else 'DefaultName',
-            'columnHeaders': columnHeaders if columnHeaders else 'DefaultColumnHeaders',
+            'columnHeaders': columnHeaders,
             'data': data
         }
 
