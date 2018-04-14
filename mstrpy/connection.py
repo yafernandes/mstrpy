@@ -20,7 +20,7 @@ class Connection:
 
     def connect(self):
         r = self._request('POST',
-                          self.__baseURL + '/auth/login',
+                          '/auth/login',
                           json=self.__config['REST_server']['credential'])
 
         self._session.headers.update(
